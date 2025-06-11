@@ -16,13 +16,13 @@ const HistoryForm = ({ onGenerate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const prompt = `Escribir casos de prueba de la siguiente historia de usuario. Por favor generar los casos con epic id, Story Linkages, nombre de caso, precondición y formato dado que, cuando y entonces. organiza los casos en una tabla de la siguiente manera:
+    const prompt = `Escribir casos de prueba funcionales y no funcionales de la siguiente historia de usuario. Por favor generar los casos con epic id, Story Linkages, nombre de caso, precondición y formato dado que, cuando y entonces. organiza los casos en una tabla de la siguiente manera:
 
 Epic Id: "${epicId || 'capturar previamente el epic id'}"
 Story Linkages: "${storyLinks || 'capturar previamente el story linkages'}"
 columna caso: nombre del caso de prueba
 columna sumary: (Epic Id - Story Linkages - Caso)
-columna precondición: la precondición
+columna precondition: la precondición
 columna priority: MEDIUM para todos los casos
 columna status: TO DO para todos los casos
 columna Step Summary: el DADO QUE
@@ -74,7 +74,7 @@ ${
       {/* Primera fila: Epic ID y Story Linkages */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
-          <label htmlFor="epicId" className="block text-sm font-medium text-gray-700 mb-1">Epic ID (opcional)</label>
+          <label htmlFor="epicId" className="block text-sm font-medium text-gray-700 mb-1">Epic ID</label>
           <input
             type="text"
             id="epicId"
@@ -84,7 +84,7 @@ ${
           />
         </div>
         <div>
-          <label htmlFor="storyLinks" className="block text-sm font-medium text-gray-700 mb-1">Story Linkages (opcional)</label>
+          <label htmlFor="storyLinks" className="block text-sm font-medium text-gray-700 mb-1">Story Linkages</label>
           <input
             type="text"
             id="storyLinks"
@@ -98,7 +98,7 @@ ${
       {/* Segunda fila: Selecciona tu IA y Selecciona tu Ambiente */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
-          <label htmlFor="selectIA" className="block text-sm font-medium text-gray-700 mb-1">Selecciona tu IA</label>
+          <label htmlFor="selectIA" className="block text-sm font-medium text-gray-700 mb-1">Selecciona una IA</label>
           <select
             id="selectIA"
             value={selectedIA}
@@ -112,7 +112,7 @@ ${
           </select>
         </div>
         <div>
-          <label htmlFor="selectEnvironment" className="block text-sm font-medium text-gray-700 mb-1">Selecciona tu Ambiente</label>
+          <label htmlFor="selectEnvironment" className="block text-sm font-medium text-gray-700 mb-1">Selecciona un ambiente</label>
           <select
             id="selectEnvironment"
             value={selectedEnvironment}
@@ -161,15 +161,17 @@ ${
         <button
           type="button"
           onClick={handleClearForm}
-          className="py-3 px-4 rounded-md bg-gray-200 text-gray-800 font-medium hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+          // Adaptamos las clases para que coincida con el color y tamaño del botón "Generate prompt"
+          className="bg-emerald-500 text-white py-3 px-4 rounded-md font-medium hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
         >
           Limpiar formulario
         </button>
         <button
           type="submit"
           disabled={!name}
+          // Adaptamos las clases para que use el color de Kushki y tenga el mismo foco
           className={`py-3 px-4 rounded-md text-white font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-            !name ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
+            !name ? 'bg-gray-400 cursor-not-allowed' : 'bg-emerald-500 hover:bg-emerald-600 focus:ring-emerald-500'
           }`}
         >
           Generar prompt
